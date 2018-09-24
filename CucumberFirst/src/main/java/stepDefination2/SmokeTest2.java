@@ -15,7 +15,7 @@ public class SmokeTest2 {
 		
 		System.setProperty("webdriver.chrome.driver","D:\\sel_jar18\\chromedriver.exe");
 	    driver=new ChromeDriver();
-	    driver.get("https://www.yahoo.com");
+	    driver.get("https://clientworks.lpl.com");
 	}
 	
 	@When("^I enter valid usernames and valid passwords$")
