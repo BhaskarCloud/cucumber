@@ -7,6 +7,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -14,14 +16,20 @@ import junit.framework.Assert;
 
 public class SmokeTest {
 	public WebDriver driver;
+	@Before
+	public void setup(){
+		System.setProperty("webdriver.chrome.driver","D:\\sel_jar18\\chromedriver.exe");
+	    driver=new ChromeDriver();
+	}
 	
-	
-	
+	@After
+	public void teatDown(){
+		driver.close();
+	}
 	
 	@Given("^open browser and start applications$")
 		public void open_browser_and_start_application()  {
-		System.setProperty("webdriver.chrome.driver","D:\\sel_jar18\\chromedriver.exe");
-	    driver=new ChromeDriver();
+		
 	    driver.get("https://www.freecrm.com");//https://www.google.com");
 
 	}
@@ -42,7 +50,7 @@ public class SmokeTest {
 
 	@Then("^users should be able to login successfully$")
 		public void user_should_be_able_to_login_successfully () {
-		
+		driver.switchTo().frame("mainpanel");
 			Assert.assertTrue(driver.findElement(By.xpath("//td[contains(text(), 'User: bhaskar khimania')]")).isDisplayed());
 			System.out.println("loged In Username verified");
 		}
